@@ -5,6 +5,16 @@ let sorteio = document.getElementById('lista-sorteio');
 
 function adicionar() {
 
+    //para impedir que add espaços vazios
+    if (amigo.value =="") {
+        return alert('Digite um nome');
+    }
+
+    //Impede que add nomes repetidos e tambem normaliza tudo como minusculo.
+    if (amigos.map(i => i.toLowerCase()).includes(amigo.value.toLowerCase())) {
+        return alert("Este nome ja foi adicionado");
+    }
+
     amigos.push(amigo.value);
 
     if (lista.textContent == "") {
@@ -20,6 +30,12 @@ function adicionar() {
 }
 
 function sortear(){
+
+    //Para impedir que o sorteio ocorra com menos de 3 pessoas.
+    if (amigos.length <= 2){
+        return alert("A lista deve conter ao menos 3 nomes")
+    }
+
     embaralhar(amigos);
      
     for (let i = 0; i < amigos.length; i++) {
